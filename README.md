@@ -31,6 +31,7 @@ Ejecución manual mediante Workflow_dispatch
 Preguntas de análisis para responder después de ejecutar
 
 1. Identifica una ejecución exitosa y una fallida. ¿Qué commit o cambio produjo cada una y qué step determinó el resultado?
+
 Ejecución Fallida: En el commit “ci: agregar validación automática con GitHub Actions” en el step determinante “Ejecutar pruebas” se generó porque el runner de GitHub en Ubuntu ejecutó pytest -v, pero al no tener el directorio raíz en el PYTHONPATH, arrojó ModuleNotFoundError: No module named 'src' 
 Ejecución Exitosa: En el commit “fix: usar python -m pytest para resolver rutas en CI” en el step determinante “Ejecutar Pruebas” se generó la ejecución exitosa Al cambiar el comando a python -m pytest -v, el intérprete agregó la raíz al sys.path, permitiendo importar el módulo src.inventario y completando los 5 casos de prueba con salida 5 passed in 0.09s.
 
